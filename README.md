@@ -23,8 +23,6 @@ Preporučivanje kurseva zasnovano je na **content-based filtering** pristupu.
 - Sličnost se računa pomoću **cosine similarity**
 - Primenjen je prag sličnosti (0.3) radi filtriranja nerelevantnih rezultata
 
-Ovaj pristup omogućava preporuke i u uslovima kada ne postoji veliki broj korisničkih interakcija, što je tipično za manje ili nove platforme.
-
 ---
 
 ## 🛠️ Tehnologije
@@ -52,14 +50,13 @@ Aplikacija je zasnovana na **klijent-server arhitekturi** i sastoji se od:
 - backend API servisa,
 - posebnog AI servisa za generisanje preporuka.
 
-Ovakav pristup omogućava modularnost, lakše održavanje i buduća proširenja sistema.
-
 ---
 
 ## 📊 Praćenje aktivnosti i statistika
 
 Sistem evidentira:
 - upis korisnika na kurseve,
+- ostavljene komentare
 - završetak lekcija,
 - uspešno položene testove.
 
@@ -70,34 +67,9 @@ Na osnovu ovih podataka omogućeni su:
 
 ---
 
-## 🚀 Mogućnosti daljeg razvoja
-
-- Uvođenje **collaborative filtering** ili hibridnog sistema preporuka
-- Naprednija personalizacija puta učenja
-- Podrška za višejezične modele
-- Skaliranje sistema korišćenjem cloud infrastrukture
-- Optimizacija performansi za veći broj korisnika
-
----
-
-## 📁 Pokretanje projekta (osnovna ideja)
+## 📁 Pokretanje projekta
 
 1. Pokrenuti backend (.NET Web API)
-2. Pokrenuti frontend (Angular aplikaciju)
-3. Pokrenuti AI servis za preporuke
+2. Pokrenuti frontend (ng serve) 
+3. Pokrenuti AI servis za preporuke (python -m uvicorn main:app --reload --port 8001)
 4. Podesiti konekciju sa MongoDB bazom
-
-*(Detaljna uputstva mogu se dodati po potrebi)*
-
----
-
-## 👤 Autor
-
-Diplomski rad iz oblasti informacionih tehnologija  
-Mentor: prof. dr Tatjana Stojanović  
-
----
-
-## 📄 Licenca
-
-Ovaj projekat je namenjen akademskoj i demonstracionoj upotrebi.
