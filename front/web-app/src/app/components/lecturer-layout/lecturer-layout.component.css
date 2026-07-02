@@ -1,0 +1,11 @@
+.lecturer-layout{
+    display:flex;
+    height: 100%;
+    width: 100%;
+    background:#f5f6fa;
+}
+
+.lecturer-content{
+    flex:1;
+    overflow-y: auto;
+}

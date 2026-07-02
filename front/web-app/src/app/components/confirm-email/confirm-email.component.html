@@ -1,0 +1,21 @@
+<div class="confirm-container">
+
+  <div class="card">
+    
+    <div *ngIf="loading" class="spinner">
+      <div class="loader"></div>
+      <p>Confirming your email...</p>
+    </div>
+
+    <div *ngIf="!loading && success" class="success">
+      <h2>✅ Email confirmed</h2>
+      <p>Your account is now active.</p>
+
+      <button (click)="goToLogin()">
+        Go to Login
+      </button>
+    </div>
+
+  </div>
+
+</div>

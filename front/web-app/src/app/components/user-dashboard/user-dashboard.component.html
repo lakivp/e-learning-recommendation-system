@@ -1,0 +1,48 @@
+<div class="dashboard">
+  <h2>User Dashboard</h2>
+  <!-- STATS -->
+  <div class="stats">
+    <div class="card">
+      <h3>Active Courses</h3>
+      <p>{{stats?.activeCourses}}</p>
+    </div>
+    <div class="card">
+      <h3>Completed Courses</h3>
+      <p>{{stats?.completedCourses}}</p>
+    </div>
+    <!-- <div class="card">
+      <h3>Lessons Completed</h3>
+      <p>{{stats?.completedLessons}} / {{stats?.totalLessons}}</p>
+    </div> -->
+  </div>
+
+  <!-- CONTINUE LEARNING -->
+  <div class="continue" *ngIf="continueLearning">
+    <h3>Continue Learning</h3>
+    <div *ngFor="let c of continueLearning">
+        <p>{{c.title}}</p>
+        <div class="progress-bar">
+        <div class="progress" [style.width.%]="c.progress"></div>
+        </div>
+    </div>
+    <div *ngIf="continueLearning.length === 0" class="no-learning">
+      No courses available
+    </div>
+  </div>
+
+  <!-- RECENT ACTIVITY -->
+  <div class="activity">
+    <h3>Recent Activity</h3>
+    <div class="activity-item" *ngFor="let a of recentActivity">
+      <span class="icon">{{icon(a.type)}}</span>
+      <div>
+        <p>{{a.text}}</p>
+        <small>{{a.date | date:'short'}}</small>
+      </div>
+    </div>
+    <div *ngIf="recentActivity.length === 0" class="no-activity">
+      There is no activity
+    </div>
+  </div>
+
+</div>

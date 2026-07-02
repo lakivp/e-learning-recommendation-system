@@ -1,0 +1,244 @@
+/* ===== ADMIN PAGE ===== */
+.admin-page {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ===== HEADER ===== */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* ===== HEATMAP ===== */
+.activity-panel {
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: visible;
+}
+
+.heatmap-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.heatmap {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 18px;
+  gap: 4px;
+}
+
+.week {
+  display: grid;
+  grid-template-rows: repeat(7, 18px);
+  gap: 4px;
+}
+
+.day {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  position: relative;
+  transition: outline 0.12s ease;
+}
+
+.day:hover {
+  outline: 1px solid rgba(0,0,0,0.15);
+  outline-offset: 1px;
+}
+
+/* ===== TOOLTIP ===== */
+.tooltip {
+  position: fixed;
+  background: #24292f;
+  color: white;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.tooltip-show {
+  opacity: 1;
+  transform: translate(-50%, -100%) scale(1);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.legend-label {
+  margin: 0 6px;
+}
+
+.legend-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.legend-box.empty { background: #ebedf0; }
+.legend-box.lvl1 { background: #9be9a8; }
+.legend-box.lvl2 { background: #40c463; }
+.legend-box.lvl3 { background: #30a14e; }
+.legend-box.lvl4 { background: #216e39; }
+
+.legend-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  position: relative;
+}
+
+/* TOOLTIP */
+.legend-tooltip {
+  position: absolute;
+  bottom: 160%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #24292f;
+  color: white;
+  font-size: 11px;
+  padding: 5px 7px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 20;
+}
+
+/* strelica */
+.legend-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #24292f transparent transparent transparent;
+}
+
+/* hover */
+.legend-box:hover .legend-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.recent-activity {
+  margin-top: 20px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.activity-item {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.icon {
+  font-size: 20px;
+  width: 24px;
+  text-align: center;
+}
+
+.no-activity {
+  text-align: left;
+  font-style: italic;
+  color: #999;
+}
+
+.months {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 18px;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.month-label {
+  font-size: 11px;
+  color: #555;
+}
+
+
+
+
+.dropdown-wrapper {
+  position: relative;
+  width: 260px;
+}
+
+.dropdown-input {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-search {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px 0 0 6px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.dropdown-btn {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  background: #f9fafb;
+  cursor: pointer;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #f0f0f0;
+}

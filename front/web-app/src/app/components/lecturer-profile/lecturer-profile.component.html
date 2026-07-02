@@ -1,0 +1,159 @@
+<div class="profile-page">
+
+    <h2 class="title">Profile</h2>
+
+    <div class="profile-card">
+
+        <div class="edit-btn" *ngIf="!edit" (click)="toggleEdit()">
+            <i class="fa fa-pencil"></i>
+        </div>
+
+        <div class="profile-header">
+
+            <h3>{{profile.name}} {{profile.surname}}</h3>
+            <p class="username">{{ '@' + profile.username }}</p>
+
+        </div>
+
+        <div class="bio-box">
+
+            <label>Bio</label>
+
+            <textarea
+                *ngIf="edit"
+                [(ngModel)]="profile.bio"
+            ></textarea>
+
+            <p *ngIf="!edit">{{profile.bio || "No bio added"}}</p>
+
+        </div>
+
+        <div class="info-grid">
+
+            <div class="info-item">
+                <label>Name</label>
+
+                <input
+                    *ngIf="edit"
+                    [(ngModel)]="profile.name"
+                />
+
+                <span *ngIf="!edit">{{profile.name}}</span>
+            </div>
+
+            <div class="info-item">
+                <label>Surname</label>
+
+                <input
+                    *ngIf="edit"
+                    [(ngModel)]="profile.surname"
+                />
+
+                <span *ngIf="!edit">{{profile.surname}}</span>
+            </div>
+
+            <div class="info-item">
+                <label>Username</label>
+
+                <input
+                    *ngIf="edit"
+                    [(ngModel)]="profile.username"
+                />
+
+                <span *ngIf="!edit">{{profile.username}}</span>
+            </div>
+
+            <div class="info-item">
+                <label>Email</label>
+
+                <input
+                    *ngIf="edit"
+                    [(ngModel)]="profile.email"
+                />
+
+                <span *ngIf="!edit">{{profile.email}}</span>
+            </div>
+
+            <div class="info-item">
+                <label>Role</label>
+                <span>{{profile.role}}</span>
+            </div>
+
+            <div class="info-item">
+                <label>Phone</label>
+
+                <input
+                    *ngIf="edit"
+                    [(ngModel)]="profile.phone"
+                />
+
+                <span *ngIf="!edit">{{profile.phone}}</span>
+            </div>
+
+            <div class="info-item">
+                <label>Specialization</label>
+
+                <input
+                    *ngIf="edit"
+                    [(ngModel)]="profile.interests"
+                />
+
+                <span *ngIf="!edit">{{profile.interests}}</span>
+            </div>
+
+        </div>
+
+        <button
+            *ngIf="edit"
+            (click)="save()"
+            class="save-btn1"
+            >
+            Save Changes
+        </button>
+        <button
+            *ngIf="edit"
+            (click)="cancelEdit()"
+            class="cancel-btn1"
+            >
+            Cancel
+        </button>
+
+        <div class="password-section">
+            <h3>Change Password</h3>
+
+            <div class="password-inputs" *ngIf="editPassword">
+                <input
+                    type="password"
+                    placeholder="Old Password"
+                    [(ngModel)]="oldPassword"
+                />
+                <input
+                    type="password"
+                    placeholder="New Password"
+                    [(ngModel)]="newPassword"
+                />
+                <input
+                    type="password"
+                    placeholder="Confirm New Password"
+                    [(ngModel)]="confirmPassword"
+                />
+                <button (click)="changePassword()" class="save-btn">
+                    Save Password
+                </button>
+                <button (click)="editPassword=false" class="cancel-btn">
+                    Cancel
+                </button>
+            </div>
+
+            <button *ngIf="!editPassword" (click)="editPassword=true" class="edit-password-btn">
+                <i class="fa fa-key"></i> Change Password
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="loader-overlay" *ngIf="loading">
+  <div class="spinner"></div>
+</div>

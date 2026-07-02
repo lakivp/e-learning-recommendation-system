@@ -1,0 +1,275 @@
+<div class="lessons-page">
+
+  <h2>Course Lessons</h2>
+
+  <input
+    type="text"
+    placeholder="Search lessons..."
+    [(ngModel)]="search"
+    (input)="searchLessons()"
+    class="search"
+  />
+
+  <div *ngIf="filteredLessons.length === 0" class="no-data">
+        No lessons found
+  </div>
+
+  <div class="grid">
+    <div class="lesson-card" *ngFor="let lesson of paginatedLessons" [class.bonus-card] = "lesson.isLocked">
+
+  <!-- RED SA BROJEM LEKCIJE I DUGMETOM -->
+        <div class="lesson-header">
+            <div class="lesson-number">Lesson {{lesson.number}}</div>
+
+            <button
+            *ngIf="!lesson.isCompleted && !lesson.isLocked"
+            class="finish"
+            (click)="completeLesson(lesson)">
+            Finish lesson
+            </button>
+
+            <span *ngIf="lesson.isCompleted" class="completed">
+            ✔ Completed
+            </span>
+
+            <span *ngIf="lesson.isLocked" class="bonus">
+               Bonus lesson
+            </span>
+        </div>
+
+        <h3>{{lesson.name}}</h3>
+
+        <div class="lesson-text-wrapper">
+            <p class="lesson-desc">{{lesson.text}}</p>
+            <span class="more-dots" (click)="openTextModal(lesson)">...</span>
+        </div>
+
+        <div class="file-preview" *ngIf="lesson.filePath">
+            <i class="fas" [ngClass]="getFileIcon(lesson.filePath)"></i>            
+            <button class="link-button" (click)="downloadLessonFile(getFileName(lesson.filePath))">
+              Download file
+            </button>
+        </div>
+
+        </div>
+  </div>
+
+  
+
+  <div class="pagination" *ngIf="filteredLessons.length > 0">
+    <button (click)="goFirst()" [disabled]="currentPage === 1">⏮</button>
+    <button (click)="goPrev()" [disabled]="currentPage === 1">◀</button>
+
+    <button *ngFor="let p of visiblePages"
+            (click)="currentPage = p"
+            [class.active]="p === currentPage">
+      {{ p }}
+    </button>
+
+    <button (click)="goNext()" [disabled]="currentPage === totalLessonPages()">▶</button>
+    <button (click)="goLast()" [disabled]="currentPage === totalLessonPages()">⏭</button>
+  </div>
+  <hr />
+  <!-- COURSE TEST CARD -->
+  <h3 class="section-title">Course Test</h3>
+
+  <div class="grid">
+
+    <div class="lesson-card"
+     [class.disabled]="!allLessonsCompleted || testPassed">
+
+    <div class="lesson-header">
+      <div class="lesson-number">Course Test</div>
+  
+      <span *ngIf="testPassed" class="completed">
+        ✔ Passed
+      </span>
+
+      <span *ngIf="!allLessonsCompleted && !testPassed" class="locked">
+        🔒 Locked
+      </span>
+    </div>
+
+    <!-- AKO JE TEST POLOŽEN -->
+      <ng-container *ngIf="testPassed">
+      </ng-container>
+
+      <ng-container *ngIf="!testPassed">
+        <ng-container *ngIf="test; else noTest">
+          <h3>{{ test.title }}</h3>
+
+          <button
+            class="start-btn"
+            *ngIf="allLessonsCompleted"
+            (click)="openTestConfirmModal()">
+            Start
+          </button>
+        </ng-container>
+
+        <ng-template #noTest>
+          <p>Test does not exist</p>
+        </ng-template>
+
+      </ng-container>
+
+    </div>
+  </div>
+
+  <!-- Komentari -->
+  <h3 class="comments-title">Comments</h3>
+
+  <div class="comment-input">
+    <input
+      type="text"
+      placeholder="Write comment..."
+      [(ngModel)]="commentText"
+    />
+    <button (click)="addComment()">➤</button>
+  </div>
+
+  <div class="comment" *ngFor="let c of paginatedComments">
+    <div class="comment-header">
+      <b>{{c.userName}}</b>
+      <span>{{c.createdAt | date:'short'}}</span>
+    </div>
+
+    <div *ngIf="editingCommentId === c.id; else normalText">
+        <input [(ngModel)]="editingCommentText" class="edit-input"/>
+        <button class="btn-save" (click)="saveComment(c)">Save</button>
+        <button class="btn-close" (click)="cancelEdit()">Cancel</button>
+    </div>
+    <ng-template #normalText>
+        <p>{{c.text}}</p>
+    </ng-template>
+
+    <div class="actions" *ngIf="c.isMine && editingCommentId !== c.id">
+        <button class="btn-edit" (click)="startEditing(c)">Edit</button>
+        <button class="btn-delete" (click)="deleteComment(c.id)">Delete</button>
+    </div>
+  </div>
+
+  <div class="pagination" *ngIf="comments.length > 0">
+    <button (click)="goCommentsFirst()" [disabled]="commentPage === 1">⏮</button>
+    <button (click)="goCommentsPrev()" [disabled]="commentPage === 1">◀</button>
+
+    <button *ngFor="let p of commentPages"
+            (click)="setCommentPage(p)"
+            [class.active]="p === commentPage">
+      {{ p }}
+    </button>
+
+    <button (click)="goCommentsNext()" [disabled]="commentPage === totalCommentPages">▶</button>
+    <button (click)="goCommentsLast()" [disabled]="commentPage === totalCommentPages">⏭</button>
+  </div>
+
+
+  </div>
+
+  <div class="modal-overlay" *ngIf="textModalOpen">
+    <div class="modalFullDesc">
+      <h3>{{textModalLesson?.name}}</h3>
+      <div class="modal-body">
+        <p>{{textModalLesson?.text}}</p>
+      </div>
+      <div class="modal-actions">
+        <button class="cancel" (click)="closeTextModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+<div class="modal-overlay" *ngIf="testModalOpen">
+  <div class="modalFullDesc test-modal">
+
+    <h3>{{ test?.title }}</h3>
+
+    <!-- START -->
+    <div *ngIf="!testStarted">
+      <button class="start-btn" (click)="startTest()">Start test</button>
+    </div>
+
+    <div *ngIf="testStarted && !testFinished" class="timer">
+        ⏱ {{ minutes }}:{{ seconds }}
+    </div>
+    <!-- TEST -->
+    <div *ngIf="testStarted && !testFinished" class="test-body">
+
+      
+
+      <div class="question-card" *ngFor="let q of test?.questions; let i = index">
+
+        <h4 class="question-title">
+          {{ i + 1 }}. {{ q.text }}
+        </h4>
+
+        <div class="answers">
+          <label class="answer"
+                *ngFor="let a of q.answers">
+            <input
+              type="radio"
+              [name]="q.id"
+              [value]="a.id"
+              [(ngModel)]="userAnswers[q.id]" />
+            <span>{{ a.text }}</span>
+          </label>
+        </div>
+
+      </div>
+
+      <button class="submit-btn" (click)="submitTest()">
+        Submit Test
+      </button>
+
+    </div>
+
+    <!-- RESULT -->
+    <div *ngIf="testFinished" class="result-box">
+
+      <h3>Test Result</h3>
+
+      <p>
+        Correct answers:
+        <b>{{ correctAnswers }}</b>
+        / {{ totalQuestions  }}
+      </p>
+
+      <div *ngIf="passed" class="result success">
+        ✔ You have successfully passed the test
+      </div>
+
+      <div *ngIf="!passed" class="result fail">
+        ✖ You did not pass the test
+      </div>
+
+      <div class="modal-actions">
+        <button class="start-btn" (click)="closeTestModal()">
+          Close
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- CONFIRM TEST START -->
+<div class="modal-overlay" *ngIf="confirmTestModalOpen">
+  <div class="modalFullDesc">
+
+    <h3>Start Test</h3>
+
+    <p>
+      Are you sure you want to start the test?
+    </p>
+
+    <div class="modal-actions">
+      <button class="start-btn" (click)="closeConfirmTestModal()">
+        Cancel
+      </button>
+
+      <button class="start-btn" (click)="confirmStartTest()">
+        Start Test
+      </button>
+    </div>
+
+  </div>
+</div>

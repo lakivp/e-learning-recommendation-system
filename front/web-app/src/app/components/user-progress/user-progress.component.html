@@ -1,0 +1,114 @@
+<div class="progress-page">
+    <h2 class="page-title">My Progress</h2>
+
+  <!-- TOP CARDS -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <h4>Lessons finished today</h4>
+      <span>{{ completedToday }}</span>
+    </div>
+
+    <div class="stat-card">
+      <h4>Completed lessons in the last 7 days</h4>
+      <span>{{ completedWeek }}</span>
+    </div>
+  </div>
+
+  <!-- HEATMAP -->
+  <h3>Activity</h3>
+    <div class="heatmap-wrapper">
+      <div class="months">
+        <div
+          class="month-label"
+          *ngFor="let m of monthLabels"
+          [style.gridColumn]="m.index">
+          {{ m.label }}
+        </div>
+      </div>
+      <div class="heatmap">
+        <div class="week" *ngFor="let week of weeks">
+          <ng-container *ngFor="let d of week">
+            <div
+              class="day"
+              *ngIf="d.date && !isFuture(d.date)"
+              [style.background]="getColor(d.count)"
+              (mouseenter)="showTooltip($event,d)"
+              (mouseleave)="hideTooltip()"
+              (click)="onDayClick(d)">
+            </div>
+          </ng-container>
+
+        </div>
+      </div>
+    </div>
+
+    
+
+    <!-- TOOLTIP fixed pozicija -->
+    <div
+      class="tooltip"
+      *ngIf="tooltipData"
+      [style.left.px]="tooltipX"
+      [style.top.px]="tooltipY">
+      {{ formatTooltip(tooltipData) }}
+    </div>
+
+  <!-- LEGENDA -->
+  <div class="legend">
+    <span class="legend-label">Less</span>
+
+    <span class="legend-box empty">
+      <span class="legend-tooltip">0 activities</span>
+    </span>
+
+    <span class="legend-box lvl1">
+      <span class="legend-tooltip">1–2 activities</span>
+    </span>
+
+    <span class="legend-box lvl2">
+      <span class="legend-tooltip">3–5 activities</span>
+    </span>
+
+    <span class="legend-box lvl3">
+      <span class="legend-tooltip">6–8 activities</span>
+    </span>
+
+    <span class="legend-box lvl4">
+      <span class="legend-tooltip">9+ activities</span>
+    </span>
+
+    <span class="legend-label">More</span>
+  </div> 
+
+  <!-- DAILY ACTIVITIES -->
+  <div class="activity" *ngIf="selectedDate">
+    <h3>Activities on {{ selectedDate | date:'fullDate' }}</h3>
+    <div class="activity-item" *ngFor="let a of paginatedActivities">
+      <span class="icon">{{icon(a.type)}}</span>
+      <div>
+        <p>{{a.text}}</p>
+        <small>{{a.date | date:'short'}}</small>
+      </div>
+    </div>
+    <div *ngIf="dayActivities.length === 0" class="no-activity">
+      There was no activity this day
+    </div>
+  </div>
+  
+    <!-- PAGINATION -->
+    <div class="pagination" *ngIf="dayActivities.length > 0">
+
+        <button (click)="goActivityFirst()" [disabled]="activityPage === 1">⏮</button>
+        <button (click)="goActivityPrev()" [disabled]="activityPage === 1">◀</button>
+
+        <button *ngFor="let p of visibleActivityPages"
+                (click)="setActivityPage(p)"
+                [class.active]="p === activityPage">
+          {{ p }}
+        </button>
+
+        <button (click)="goActivityNext()" [disabled]="activityPage === totalActivityPages">▶</button>
+        <button (click)="goActivityLast()" [disabled]="activityPage === totalActivityPages">⏭</button>
+
+    </div>
+</div>

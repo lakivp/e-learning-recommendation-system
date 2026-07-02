@@ -1,0 +1,110 @@
+.wrapper {
+  padding: 30px;
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+.page-title {
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.enrollments-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.enrollments-table th,
+.enrollments-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.enrollments-table th {
+  cursor: pointer;
+  background: #f0f0f0;
+  font-weight: 600;
+  position: relative;
+}
+
+.enrollments-table th i {
+  margin-left: 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.enrollments-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.delete-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #999;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  gap: 8px;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: none;
+  background: #e0e0e0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pagination button.active {
+  background: #3f51b5;
+  color: #fff;
+  font-weight: bold;
+}
+
+@media (max-width: 1000px) {
+  .enrollments-table th, .enrollments-table td {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .search-input {
+    max-width: 100%;
+  }
+}

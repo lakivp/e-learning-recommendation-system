@@ -1,0 +1,64 @@
+<div class="wrapper">
+  <h2 class="page-title">All Course Enrollments</h2>
+
+  <!-- SEARCH INPUT -->
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Search by username or course..."
+    [(ngModel)]="searchText"
+    (input)="filter()"
+  />
+
+  <table class="enrollments-table">
+    <thead>
+      <tr>
+        <th (click)="sort('username')">
+          Username
+          <i class="fa fa-sort" aria-hidden="true"></i>
+        </th>
+        <th (click)="sort('courseName')">
+          Course Name
+          <i class="fa fa-sort" aria-hidden="true"></i>
+        </th>
+        <th (click)="sort('enrolledAt')">
+          Enrolled At
+          <i class="fa fa-sort" aria-hidden="true"></i>
+        </th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of pagedEnrollments">
+        <td>{{ e.username }}</td>
+        <td>{{ e.courseName }}</td>
+        <td>{{ e.enrolledAt | date:'short' }}</td>
+        <td>
+          <button class="delete-btn" (click)="deleteEnrollment(e.id)">Remove</button>
+        </td>
+      </tr>
+      <tr *ngIf="pagedEnrollments.length === 0">
+        <td colspan="4" class="no-data">No enrollments found</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination" *ngIf="pagedEnrollments.length > 0">
+
+        <button (click)="goToFirst()" [disabled]="page === 1">⏮</button>
+
+        <button (click)="prevPage()" [disabled]="page === 1">◀</button>
+
+        <button
+            *ngFor="let p of visiblePages"
+            (click)="setPage(p)"
+            [class.active]="p === page">
+            {{ p }}
+        </button>
+
+        <button (click)="nextPage()" [disabled]="page === totalPages">▶</button>
+
+        <button (click)="goToLast()" [disabled]="page === totalPages">⏭</button>
+
+    </div>
+</div>

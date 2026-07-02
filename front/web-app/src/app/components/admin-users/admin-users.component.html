@@ -1,0 +1,115 @@
+<div class="users-container">
+
+    <h2>Users</h2>
+
+    <div class="top-bar">
+
+        <input
+            type="text"
+            placeholder="Search user..."
+            [(ngModel)]="searchTerm"
+            (input)="applyFilters()"
+        />
+
+        <select
+        [(ngModel)]="roleFilter"
+        (change)="applyFilters()"
+    >
+        <option value="All">All roles</option>
+        <option value="User">Users</option>
+        <option value="Lecturer">Lecturers</option>
+    </select>
+    </div>
+
+     
+
+    <table>
+
+        <thead>
+            <tr>
+            <th>User</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let user of paginatedUsers">
+
+            <td>{{user.name}} {{user.surname}}</td>
+
+            <td>{{user.username}}</td>
+
+        <td>
+
+            <span *ngIf="user.role === 'Admin'" class="admin">
+                Admin
+            </span>
+                <select
+                    *ngIf="user.role !== 'Admin'"
+                    [ngClass]="{
+                        'select-user': user.role === 'User',
+                        'select-lecturer': user.role === 'Lecturer'
+                    }"
+                    [value]="user.role"
+                    (change)="changeRole(user, $event)"
+                    >
+                    <option value="User" class="user">User</option>
+                    <option value="Lecturer" class="lecturer">Lecturer</option>
+                </select>
+            </td>
+
+        <td>
+
+            <label class="switch">
+
+            <input
+                type="checkbox"
+                [checked]="user.isActive"
+                (change)="toggle(user)"
+            >
+
+        <span class="slider"></span>
+
+        </label>
+
+        <span class="status-text">
+
+        {{user.isActive ? "Enabled" : "Disabled"}}
+
+        </span>
+
+    </td>
+
+    </tr>
+
+    <tr *ngIf="filteredUsers.length === 0">
+        <td colspan="4" class="no-data">No users found</td>
+    </tr>
+    </tbody>
+
+    </table>
+
+    <div class="pagination" *ngIf="filteredUsers.length > 0">
+
+        <button (click)="goToFirst()" [disabled]="page === 1">⏮</button>
+
+        <button (click)="prevPage()" [disabled]="page === 1">◀</button>
+
+        <button
+            *ngFor="let p of visiblePages"
+            (click)="setPage(p)"
+            [class.active]="p === page">
+            {{ p }}
+        </button>
+
+        <button (click)="nextPage()" [disabled]="page === totalPages">▶</button>
+
+        <button (click)="goToLast()" [disabled]="page === totalPages">⏭</button>
+
+    </div>
+
+
+</div>

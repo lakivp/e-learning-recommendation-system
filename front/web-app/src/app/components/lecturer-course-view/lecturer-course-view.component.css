@@ -1,0 +1,674 @@
+.wrapper{
+  padding:30px;
+}
+
+.lessons-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.search-input{
+  width: 20%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.add-btn{
+  margin-top:10px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.lessons-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  margin-top:20px;
+}
+
+.lesson-card{
+  width:260px;
+  background:white;
+  padding:16px;
+  border-radius:8px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  position:relative;
+}
+
+.lesson-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+}
+
+.lesson-number{
+  font-size:12px;
+  color:#2563eb;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.lesson-text-wrapper{
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+
+.lesson-desc{
+  flex:1;
+  margin:0;
+  font-size:14px;
+  color:#555;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  display:box;           
+  line-clamp:2;          
+  box-orient:vertical;  
+}
+
+.more-dots{
+  cursor:pointer;
+  color:#888;
+  font-weight:bold;
+}
+
+.more-dots:hover {
+  color: #2563eb;
+}
+
+.file-preview{
+  margin-top:10px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.file-preview i{
+  font-size:22px;
+  color:#e11d48;
+}
+
+.actions{
+  display:flex;
+  justify-content:space-between;
+  margin-top:12px;
+}
+
+.delete-btn{
+  margin-right: 8px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-file-btn{
+  background:#e11d48;
+  border:none;
+  color:white;
+  border-radius:50%;
+  width:20px;
+  height:20px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-left:8px;
+}
+
+.edit-icon{
+    cursor: pointer;
+}
+
+.pagination{
+  margin-top:20px;
+  display:flex;
+  gap:8px;
+}
+
+.pagination button{
+  padding:6px 10px;
+  border:none;
+  background:#eee;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.pagination button.active{
+  background:#2563eb;
+  color:white;
+}
+
+.comment {
+  background:white;
+  padding:12px;
+  border-radius:6px;
+  margin-top:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+}
+
+.comment-left {
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.comment-user {
+  font-weight:bold;
+  font-size:13px;
+  margin:0;
+}
+
+.comment-text {
+  margin:0;
+  color:#555;
+}
+
+.comment-date {
+  font-size:12px;
+  color:#999;
+}
+
+.comment-right button.delete-comment {
+  background:#e11d48;
+  border:none;
+  color:white;
+  padding:4px 10px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.modal-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal{
+  background:white;
+  padding:24px;
+  border-radius:10px;
+  width:400px;
+}
+
+.modal input, .modal textarea{
+  width:100%;
+  margin-top:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  padding:5px;
+}
+
+.modal textarea{
+  min-height:50px;
+  resize:vertical;
+  padding: 8px;
+}
+
+.input-title{
+  padding:8px;
+}
+
+.drop-zone{
+  margin-top:15px;
+  border:2px dashed #ccc;
+  border-radius:8px;
+  padding:20px;
+  text-align:center;
+  cursor:pointer;
+  position:relative;
+}
+
+.drop-zone.active{
+  border-color:#2563eb;
+  background:#f0f6ff;
+}
+
+.drop-zone input{
+  position:absolute;
+  width:100%;
+  height:100%;
+  opacity:0;
+  top:0;
+  left:0;
+  cursor:pointer;
+}
+
+.drop-zone.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.modal-actions{
+  margin-top:35px;
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+}
+
+.modal-actions button{
+  padding:7px 12px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  background:#2563eb;;
+  color:white;
+}
+
+.modal-actions .cancel{
+    background:#ccc;;
+    color:black;
+
+}
+
+
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 31, 28, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.spinner {
+  width: 70px;
+  height: 70px;
+  border: 6px solid rgba(255,255,255,0.2);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.modalFullDesc{
+  background: white;
+  padding: 24px;
+  border-radius: 10px;
+  width: 400px;
+  height: auto;        
+  max-height: none;    
+  overflow: visible;   
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.modalFullDesc p{
+  word-break: break-word;
+  white-space: pre-wrap; 
+}
+
+.modal-actions{
+  margin-top:15px;
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+}
+
+.modal-actions button{
+  padding:7px 12px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  background:#ccc;;
+  color:black;
+}
+
+.no-data {
+  text-align: left;
+  padding: 20px;
+  font-style: italic;
+  color: #999;
+}
+
+.link-button {
+  background: none;       
+  border: none;           
+  color: #2563eb;         
+  cursor: pointer;        
+  font-size: inherit;     
+  padding: 0;             
+}
+
+.link-button:hover {
+  color: #1e40af;         
+}
+
+.test-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.question {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.correct {
+  color: green;
+  font-weight: bold;
+}
+
+.add-btn1 {
+  background: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.option-textarea {
+  width: 100%;
+  min-height: 60px;
+  resize: vertical;
+  padding: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+.correct-radio {
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.question-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.questions-list {
+  max-height: 250px;
+  overflow-y: auto;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.modal.large {
+  width: 700px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+.options-wrapper {
+  margin-top: 10px;
+}
+
+
+.is-correct {
+  font-size: 13px;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.modal-content{
+  overflow-y: auto;
+  flex:1;
+  padding-right: 8px;
+}
+
+.modal-content input{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.modal-xl {
+  width: 900px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;/*dodato*/
+}
+
+.modal-header {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-footer {
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.question-textarea {
+  width: 100%;
+  min-height: 80px;
+  resize: vertical;
+  padding: 10px;
+}
+
+.options-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.option-textarea {
+  flex: 1;
+  min-width: 0;
+  min-height: 60px;
+  padding: 8px;
+  resize: vertical;
+}
+
+.remove-option {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.question-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.questions-list {
+  flex: 1;
+  overflow-y: auto;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 10px;
+}
+
+.question-preview {
+  background: #f9fafb;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background: #e5e7eb;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sticky-actions {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 12px 0;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+
+.test-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+  height: 100%;
+}
+
+.test-left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.test-right {
+  flex: 1;
+  border-left: 1px solid #e5e7eb;
+  padding-left: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.questions-scroll {
+  overflow-y: auto;
+  max-height: calc(90vh - 220px);
+}
+
+/* JEDNA OPCIJA = RED */
+.option-row {
+  display: grid;
+  grid-template-columns: 1fr 140px; /* LEVO široko, DESNO usko */
+  gap: 12px;
+  align-items: flex-start;
+}
+
+/* LEVI INPUT */
+.option-input {
+  width: 100%;
+  min-height: 70px;
+  resize: vertical;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  box-sizing: border-box;
+}
+
+/* DESNA STRANA */
+.option-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 6px;
+}
+
+/* IS CORRECT */
+.is-correct {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #2563eb;
+  white-space: nowrap;
+}
+
+/* DELETE */
+.remove-option {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.sticky-actions {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 12px 0;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  gap: 10px;
+}
+
+.options-scroll {
+  max-height: 260px;      /* koliko odgovora se vidi */
+  overflow-y: auto;      /* skrol samo ovde */
+  padding-right: 6px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+/* lep scrollbar (opciono ali preporučeno) */
+.options-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.options-scroll::-webkit-scrollbar-thumb {
+  background: #c7d2fe;
+  border-radius: 10px;
+}
+
+.options-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}

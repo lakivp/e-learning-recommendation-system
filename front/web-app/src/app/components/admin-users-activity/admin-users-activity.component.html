@@ -1,0 +1,117 @@
+<div class="admin-page">
+  <h2>Users Activity</h2>
+  <!-- HEADER -->
+  <div class="page-header">
+
+   <div class="dropdown-wrapper">
+  <div class="dropdown-input">
+    <input
+      type="text"
+      class="dropdown-search"
+      placeholder="Select or search for a user"
+      [(ngModel)]="searchText"
+      (input)="filterUsers()"
+    />
+    <!-- Dugme za otvaranje/zatvaranje dropdowna -->
+    <button type="button" class="dropdown-btn" (click)="toggleDropdown()">
+      ▼
+    </button>
+  </div>
+
+  <!-- Lista korisnika -->
+  <div class="dropdown-list" *ngIf="showDropdown">
+    <div
+      class="dropdown-item"
+      *ngFor="let u of filteredUsers"
+      (click)="selectUser(u)"
+    >
+      {{ u.username }} ({{ u.email }})
+    </div>
+  </div>
+</div>
+  </div>
+
+  <!-- HEATMAP -->
+  <div *ngIf="selectedUser" class="activity-panel">
+
+    <h3>Activity</h3>
+
+    <div class="heatmap-wrapper">
+      <div class="months">
+        <div
+          class="month-label"
+          *ngFor="let m of monthLabels"
+          [style.gridColumn]="m.index">
+          {{ m.label }}
+        </div>
+      </div>
+      <div class="heatmap">
+        <div class="week" *ngFor="let week of weeks">
+          <ng-container *ngFor="let d of week">
+            <div
+              class="day"
+              *ngIf="d.date && !isFuture(d.date)"
+              [style.background]="getColor(d.count)"
+              (mouseenter)="showTooltip($event,d)"
+              (mouseleave)="hideTooltip()">
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOLTIP fixed pozicija -->
+    <div
+      class="tooltip"
+      *ngIf="tooltipData"
+      [style.left.px]="tooltipX"
+      [style.top.px]="tooltipY">
+      {{ formatTooltip(tooltipData) }}
+    </div>
+
+    <!-- LEGENDA -->
+    <div class="legend">
+      <span class="legend-label">Less</span>
+
+      <span class="legend-box empty">
+        <span class="legend-tooltip">0 activities</span>
+      </span>
+
+      <span class="legend-box lvl1">
+        <span class="legend-tooltip">1–2 activities</span>
+      </span>
+
+      <span class="legend-box lvl2">
+        <span class="legend-tooltip">3–5 activities</span>
+      </span>
+
+      <span class="legend-box lvl3">
+        <span class="legend-tooltip">6–8 activities</span>
+      </span>
+
+      <span class="legend-box lvl4">
+        <span class="legend-tooltip">9+ activities</span>
+      </span>
+
+      <span class="legend-label">More</span>
+    </div>
+
+  </div>
+
+  <!-- RECENT ACTIVITY -->
+  <div *ngIf="selectedUser" class="recent-activity">
+    <h3>Recent Activity</h3>
+    <div *ngFor="let a of recentActivity" class="activity-item">
+      <span class="icon">{{icon(a.type)}}</span>
+      <div>
+        <p>{{a.text}}</p>
+        <small>{{a.date | date:'short'}}</small>
+      </div>
+    </div>
+    <div *ngIf="recentActivity.length === 0 && selectedUser" class="no-activity">
+      There is no activity
+    </div>
+  </div>
+
+
+</div>

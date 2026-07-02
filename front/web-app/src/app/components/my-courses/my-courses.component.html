@@ -1,0 +1,144 @@
+<div class="wrapper">
+
+  <h2 class="page-title">My Courses</h2>
+  <div class="top-bar">
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Search courses..."
+      [(ngModel)]="searchText"
+      (input)="filterCourses()"
+    />
+    <div class="filters-bar">
+      <select
+          class="filter-select"
+          [(ngModel)]="courseFilter">
+
+          <option value="all">All courses</option>
+          <option value="active">Active courses</option>
+          <option value="completed">Completed courses</option>
+
+      </select>
+    </div>
+  </div>
+
+  <!-- ACTIVE COURSES -->
+  <h3 class="section-title" *ngIf="showActive()">Active Courses</h3>
+  <div class="grid" *ngIf="showActive()">
+    <div class="course-card" *ngFor="let c of pagedActiveCourses">
+
+        <!-- PROGRESS NA VRHU -->
+        <div class="progress-text">
+            {{ c.completedLessons }} / {{ c.totalLessons }} lessons completed
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress"
+                [style.width.%]="(c.completedLessons / c.totalLessons) * 100">
+            </div>
+        </div>
+
+        <!-- TITLE -->
+        <h3 class="course-title">{{ c.title }}</h3>
+
+        <!-- DESCRIPTION -->
+        
+
+        <div class="course-desc-wrapper">
+            <p class="course-desc" (click)="openDescModal(c)">
+            {{ c.description }}
+            </p>
+            <i class="fas fa-ellipsis-h desc-icon" (click)="openDescModal(c)"></i>
+        </div>
+
+        <!-- VIEW ICON -->
+        <i
+            class="fa fa-external-link view-icon"
+            [routerLink]="['/user/courses', c.courseId]">
+        </i>
+
+        </div>
+        <div *ngIf="filteredActiveCourses.length === 0" class="no-data">
+          No active courses found
+        </div>
+  </div>
+  
+
+  <div class="pagination" *ngIf="showActive() && filteredActiveCourses.length > 0">
+
+    <button (click)="activeFirst()" [disabled]="activePage === 1">⏮</button>
+    <button (click)="activePrev()" [disabled]="activePage === 1">◀</button>
+
+    <button
+      *ngFor="let p of visibleActivePages"
+      (click)="goActivePage(p)"
+      [class.active]="p === activePage">
+      {{ p }}
+    </button>
+
+    <button (click)="activeNext()" [disabled]="activePage === activeTotalPages">▶</button>
+    <button (click)="activeLast()" [disabled]="activePage === activeTotalPages">⏭</button>
+
+  </div>
+
+  <!-- COMPLETED COURSES -->
+  <h3 class="section-title" *ngIf="showCompleted()">Completed Courses</h3>
+  <div class="grid completed" *ngIf="showCompleted()">
+    <div class="course-card completed" *ngFor="let c of pagedCompletedCourses">
+        <span class="badge">✔ Completed</span>
+        <div class="progress-bar">
+            <div class="progress" style="width: 100%"></div>
+        </div>
+
+        <h3 class="course-title">{{ c.title }}</h3>
+
+        <div class="course-text-wrapper">
+            <p class="course-desc">{{ c.description }}</p>
+            <button class="more-btn"
+                    title="View full description"
+                    (click)="openDescModal(c)">
+            ⋯
+            </button>
+        </div>
+
+        <i
+            class="fa fa-external-link view-icon"
+            title="View lessons"
+            [routerLink]="['/user/courses', c.courseId]">
+        </i>
+    </div>
+    <div *ngIf="filteredCompletedCourses.length === 0" class="no-data">
+      No completed courses found
+    </div>
+  </div>
+  
+
+  <div class="pagination" *ngIf="showCompleted() && filteredCompletedCourses.length > 0">
+
+    <button (click)="completedFirst()" [disabled]="completedPage === 1">⏮</button>
+    <button (click)="completedPrev()" [disabled]="completedPage === 1">◀</button>
+
+    <button
+      *ngFor="let p of visibleCompletedPages"
+      (click)="goCompletedPage(p)"
+      [class.active]="p === completedPage">
+      {{ p }}
+    </button>
+
+    <button (click)="completedNext()" [disabled]="completedPage === completedTotalPages">▶</button>
+    <button (click)="completedLast()" [disabled]="completedPage === completedTotalPages">⏭</button>
+
+  </div>
+
+  <!-- FULL DESCRIPTION MODAL -->
+  <div class="modal-overlay" *ngIf="descModalOpen">
+    <div class="modalFullDesc">
+      <h3>{{ selectedCourse?.title }}</h3>
+      <p>{{ selectedCourse?.description }}</p>
+      <div class="modal-actions">
+        <button class="cancel" (click)="closeDescModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+</div>

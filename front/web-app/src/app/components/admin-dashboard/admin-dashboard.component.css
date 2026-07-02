@@ -1,0 +1,228 @@
+.dashboard{
+padding:30px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+margin-bottom:40px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p{
+font-size:28px;
+font-weight:bold;
+}
+
+.chart-box{
+background:white;
+padding:20px;
+border-radius:10px;
+margin-bottom:40px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #eee;
+text-align: center;
+}
+
+.active{
+color:green;
+font-weight:bold;
+}
+
+.disabled{
+color:red;
+font-weight:bold;
+}
+
+.pagination{
+margin-top:20px;
+display:flex;
+gap:8px;
+justify-content:left;
+}
+
+.pagination button{
+padding:6px 12px;
+border:none;
+background: #eee;
+border-radius:5px;
+cursor:pointer;
+}
+
+.pagination button.active {
+  background: #2c7be5;
+  color: white;
+}
+
+/* Kontejner za obe kartice (top 5 korisnika i top 5 kurseva) */
+.top-cards-container {
+  display: flex;
+  gap: 20px; /* razmak između kartica */
+  margin-bottom: 40px;
+}
+
+/* Leva kartica: Top 5 korisnika */
+.top-users-card {
+  flex: 1; /* zauzima pola raspoloživog prostora */
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.top-users-card h3 {
+  margin-bottom: 15px;
+}
+
+.top-user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.username {
+  width: 120px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 12px;
+  background: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: #3f51b5;
+  border-radius: 6px;
+}
+
+.count {
+  width: 30px;
+  text-align: right;
+  font-weight: bold;
+}
+
+/* Desna kartica: Top 5 kurseva */
+.top-courses-card {
+  flex: 1; /* zauzima pola raspoloživog prostora */
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.top-courses-card h3 {
+  margin-bottom: 15px;
+}
+
+.top-course {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.coursename {
+  width: 140px;
+}
+
+.course-progress-bar {
+  flex: 1;
+  height: 12px;
+  background: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.course-progress {
+  height: 100%;
+  background: #ff9800; /* druga boja da razlikuje od korisnika */
+  border-radius: 6px;
+}
+
+.course-count {
+  width: 30px;
+  text-align: right;
+  font-weight: bold;
+}
+
+@media (max-width: 1000px){
+
+.dashboard{
+padding:15px;
+}
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.card p{
+font-size:22px;
+}
+
+.chart-box{
+width:100%;
+overflow-x:auto;
+}
+
+canvas{
+max-width:100%;
+}
+
+.table-wrapper{
+overflow-x:auto;
+}
+
+table{
+font-size:14px;
+min-width:600px;
+}
+
+th, td{
+padding:8px;
+text-align:center;
+}
+
+.pagination{
+margin-top:15px;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:6px;
+}
+
+.pagination button{
+padding:5px 10px;
+font-size:13px;
+}
+.top-cards-container {
+    flex-direction: column;
+  }
+
+}

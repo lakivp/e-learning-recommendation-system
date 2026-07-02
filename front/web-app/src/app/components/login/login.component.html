@@ -1,0 +1,52 @@
+<div class="auth-page">
+
+  <!-- LEFT: FORM -->
+  <div class="auth-left">
+
+    <div class="auth-card">
+      <h2>Platform Learning</h2>
+
+      <input
+        type="text"
+        placeholder="Enter your username"
+        [(ngModel)]="username"
+        required
+      >
+
+      <input
+        type="password"
+        placeholder="Enter your password"
+        [(ngModel)]="password"
+        required
+      >
+
+      <button class="login-button" (click)="login()">
+        Login
+      </button>
+
+      <p class="register-link">
+        Forgot your password?
+        <button type="button" class="register-button" (click)="goToForgot()">
+          Click to reset
+        </button>
+      </p>
+
+      <p class="register-link">
+        Don’t have an account?
+        <button type="button" class="register-button" (click)="goToRegister()">
+          Create account
+        </button>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: IMAGE -->
+  <div class="auth-right"></div>
+
+</div>
+
+<!-- LOADER OSTAVLJAMO -->
+<div class="loader-overlay" *ngIf="loading">
+  <div class="spinner"></div>
+</div>

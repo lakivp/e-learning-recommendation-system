@@ -1,0 +1,172 @@
+<div class="admin-courses-wrapper">
+
+  <div class="header">
+    <h2>Courses</h2>
+
+    <!-- <button
+      (click)="openAddModal()"
+      class="add-btn">
+      + Add Course
+    </button> -->
+  </div>
+
+  <div class="search-box">
+    <input
+      type="text"
+      placeholder="Search courses..."
+      [(ngModel)]="searchTerm"
+      (input)="searchCourses()"
+    />
+  </div>
+
+  <div class="courses-grid">
+
+    <div class="course-card" *ngFor="let course of pagedCourses">
+
+      <!-- EDIT ICON -->
+      <!-- <i
+        class="fas fa-pen edit-icon"
+        (click)="openEditModal(course)">
+      </i> -->
+
+      <h3>{{ course.title }}</h3>
+      <p class="course-desc">
+        {{ course.description }}
+      </p>
+
+      <i class="fas fa-ellipsis-h desc-icon" (click)="openDescModal(course)"></i>
+
+      <div class="actions">
+
+        <!-- VIEW ICON -->
+        <i
+          class="fa fa-external-link view-icon"
+          [routerLink]="['/admin/courses', course.id]">
+        </i>
+
+        <button
+          class="delete-btn"
+          (click)="deleteCourse(course.id)">
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+      <div *ngIf="filteredCourses.length === 0" class="no-data">
+        No courses found
+      </div>
+
+  <!-- PAGINATION -->
+
+  <div class="pagination" *ngIf="filteredCourses.length > 0 && courses.length > 0">
+
+    <button (click)="goFirst()" [disabled]="page === 1">
+      ⏮
+    </button>
+
+    <button (click)="goPrev()" [disabled]="page === 1">
+      ◀
+    </button>
+
+    <button
+      *ngFor="let p of visiblePages"
+      (click)="goToPage(p)"
+      [class.active]="p === page">
+      {{ p }}
+    </button>
+
+    <button (click)="goNext()" [disabled]="page === totalPages">
+      ▶
+    </button>
+
+    <button (click)="goLast()" [disabled]="page === totalPages">
+      ⏭
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- EDIT MODAL -->
+<!-- 
+<div class="modal-overlay" *ngIf="editingCourse">
+
+  <div class="modal">
+
+    <h3>Edit Course</h3>
+
+    <input
+      type="text"
+      [(ngModel)]="editingCourse.title"
+      placeholder="Course title"
+    />
+
+    <textarea
+      [(ngModel)]="editingCourse.description"
+      placeholder="Course description">
+    </textarea>
+
+    <div class="modal-actions">
+
+      <button (click)="saveEdit()">Save</button>
+
+      <button class="cancel" (click)="closeModal()">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+</div> -->
+
+
+  <!-- ADD COURSE MODAL -->
+
+<!-- <div class="modal-overlay" *ngIf="addingCourse">
+
+  <div class="modal">
+
+    <h3>Add Course</h3>
+
+    <input
+      type="text"
+      [(ngModel)]="newCourse.title"
+      placeholder="Course title"
+    />
+
+    <textarea
+      [(ngModel)]="newCourse.description"
+      placeholder="Course description">
+    </textarea>
+
+    <div class="modal-actions">
+
+      <button (click)="saveNewCourse()">Add</button>
+
+      <button
+        class="cancel"
+        (click)="closeAddModal()">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+</div> -->
+
+<!-- FULL DESCRIPTION MODAL -->
+<div class="modal-overlay" *ngIf="fullDescCourse">
+  <div class="modalFullDesc">
+    <h3>{{ fullDescCourse.title }}</h3>
+    <p>{{ fullDescCourse.description }}</p>
+    <div class="modal-actions">
+      <button class="cancel" (click)="closeDescModal()">Close</button>
+    </div>
+  </div>
+</div>

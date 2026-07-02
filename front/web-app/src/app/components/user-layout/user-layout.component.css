@@ -1,0 +1,11 @@
+.user-layout{
+    display:flex;
+    height: 100%;
+    width: 100%;
+    background:#f5f6fa;
+}
+
+.user-content{
+    flex:1;
+    overflow-y: auto;
+}

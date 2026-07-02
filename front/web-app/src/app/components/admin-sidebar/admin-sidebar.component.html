@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<div [class.sidebar]="true" [class.collapsed]="collapsed">
+
+  <div class="sidebar-top">
+    <div class="logo">
+        <span *ngIf="!collapsed">Platform Learning</span>
+    </div>
+    <button class="toggle-btn" (click)="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <div class="sidebar-menu-wrapper"> 
+    <ul class="menu">
+        <li (click)="navigate('/admin/adminDashboard')">
+        <i class="fas fa-home"></i>
+        <span *ngIf="!collapsed">Dashboard</span>
+        </li>
+        <li (click)="navigate('/admin/courses')">
+          <i class="fas fa-book-open"></i>          
+          <span *ngIf="!collapsed">Courses</span>
+        </li>
+        <li (click)="navigate('/admin/users')">
+          <i class="fas fa-users"></i>
+          <span *ngIf="!collapsed">Users</span>
+        </li>
+        <li (click)="navigate('/admin/lecturer-requests')">
+          <i class="fas fa-user-check"></i>
+          <span *ngIf="!collapsed">Lecturer Requests</span>
+        </li>
+        <li (click)="navigate('/admin/enrollments')">
+          <i class="fas fa-graduation-cap"></i>
+          <span *ngIf="!collapsed">Enrollments</span>
+        </li>
+        <li (click)="navigate('/admin/users-activity')">
+          <i class="fas fa-chart-line"></i>
+          <span *ngIf="!collapsed">Users Activity</span>
+        </li>
+    </ul>
+   </div>
+  <div class="sidebar-bottom">
+    <button class="logout-btn" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+      <span *ngIf="!collapsed">Logout</span>
+    </button>
+  </div>
+
+</div>

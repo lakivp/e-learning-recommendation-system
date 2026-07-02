@@ -1,0 +1,113 @@
+<div class="dashboard">
+
+  <h2>Lecturer Dashboard</h2>
+
+  <div class="top-cards-container">
+
+    <div class="top-courses-card">
+      <h3>Top Courses by Enrolled</h3>
+      <div class="top-course" *ngFor="let c of dashboard?.topCourses">
+        <span class="coursename">{{c.title}}</span>
+        <div class="progress-bar">
+          <div class="progress" [style.width.%]="(c.students/maxStudents)*100"></div>
+        </div>
+        <span class="count">{{c.students}}</span>
+      </div>
+    </div>
+
+    <div class="top-courses-card">
+      <h3>Top Courses by Completed</h3>
+      <div class="top-course" *ngFor="let c of dashboard?.topCompletedCourses">
+        <span class="coursename">{{c.title}}</span>
+        <div class="progress-bar">
+          <div class="progress" [style.width.%]="(c.completed/maxCompleted)*100"></div>
+        </div>
+        <span class="count">{{c.completed}}</span>
+      </div>
+    </div>
+
+    <div class="top-courses-card">
+        <h3>Top Users by Completed Courses</h3>
+
+        <div class="top-course" *ngFor="let u of dashboard?.topCompletedUsers">
+            <span class="coursename">{{u.username}}</span>
+
+            <div class="progress-bar">
+            <div class="progress"
+                [style.width.%]="(u.completed / maxUserCompleted) * 100">
+            </div>
+            </div>
+
+            <span class="count">{{u.completed}}</span>
+        </div>
+    </div>
+  </div>
+  <h3>All Course Enrollments</h3>
+
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Search by username or course..."
+    [(ngModel)]="searchText"
+    (input)="filter()"
+   />
+
+  <!-- ENROLLMENTS TABLE -->
+  <table class="enrollments-table">
+    <thead>
+        <tr>
+            <th (click)="sort('username')">
+            Username
+            <span>
+                <i class="fa fa-sort" aria-hidden="true"></i>
+            </span>
+            </th>
+
+            <th (click)="sort('courseName')">
+            Course
+            <span>
+                <i class="fa fa-sort" aria-hidden="true"></i>
+            </span>
+            </th>
+
+            <th (click)="sort('enrolledAt')">
+            Enrolled At
+            <span>
+                <i class="fa fa-sort" aria-hidden="true"></i>
+            </span>
+            </th>
+
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of pagedEnrollments">
+        <td>{{e.username}}</td>
+        <td>{{e.courseName}}</td>
+        <td>{{e.enrolledAt | date:'short'}}</td>
+        <td>
+          <button class="delete-btn" (click)="deleteEnrollment(e.id)">Remove</button>
+        </td>
+      </tr>
+      <tr *ngIf="pagedEnrollments.length === 0">
+        <td colspan="4" class="no-data">No enrollments found</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- PAGINATION -->
+  <div class="pagination" *ngIf="pagedEnrollments.length">
+    <button (click)="goToFirst()" [disabled]="page === 1 || totalPages <= 1">⏮</button>
+    <button (click)="prevPage()" [disabled]="page === 1 || totalPages <= 1">◀</button>
+
+    <button *ngFor="let p of visiblePages"
+            (click)="setPage(p)"
+            [class.active]="p===page">
+      {{p}}
+    </button>
+
+    <button (click)="nextPage()" [disabled]="page === totalPages || totalPages <= 1">▶</button>
+    <button (click)="goToLast()" [disabled]="page === totalPages || totalPages <= 1">⏭</button>
+  </div>
+
+</div>

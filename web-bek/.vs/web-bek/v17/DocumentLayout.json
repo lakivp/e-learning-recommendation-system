@@ -1,0 +1,326 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\models\\coursetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\models\\coursetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\admintestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\admintestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\userprogresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\userprogresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\usertestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\usertestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\adminactivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\adminactivitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\userdashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\userdashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\usercoursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\usercoursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\lecturertestscontoller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\lecturertestscontoller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\lecturercoursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\lecturercoursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\admincoursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\admincoursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\adminenrollmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\adminenrollmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|c:\\users\\jelena\\desktop\\diplomskiprojekat\\web-bek\\web-bek\\controllers\\lecturerdashboardcontoller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E67E78CF-68ED-427C-91AE-EC484D43A46E}|web-bek\\web-bek.csproj|solutionrelative:web-bek\\controllers\\lecturerdashboardcontoller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CourseTest.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Models\\CourseTest.cs",
+              "RelativeDocumentMoniker": "web-bek\\Models\\CourseTest.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Models\\CourseTest.cs",
+              "RelativeToolTip": "web-bek\\Models\\CourseTest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-24T09:56:01.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AdminActivityController.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\AdminActivityController.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\AdminActivityController.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\AdminActivityController.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\AdminActivityController.cs",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-17T08:00:31.421Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdminTestsController.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\AdminTestsController.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\AdminTestsController.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\AdminTestsController.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\AdminTestsController.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAgwCYAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-17T08:00:25.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserTestsController.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\UserTestsController.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\UserTestsController.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\UserTestsController.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\UserTestsController.cs",
+              "ViewState": "AQIAAHQAAAAAAAAAAAAAAJMAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T20:33:30.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserProgressController.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\UserProgressController.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\UserProgressController.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\UserProgressController.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\UserProgressController.cs",
+              "ViewState": "AQIAAPkAAAAAAAAAAAAAAP8AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T20:33:09.34Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserDashboardController.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\UserDashboardController.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\UserDashboardController.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\UserDashboardController.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\UserDashboardController.cs",
+              "ViewState": "AQIAAI8AAAAAAAAAAAAAAKUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-17T08:02:02.217Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserCoursesController.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\UserCoursesController.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\UserCoursesController.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\UserCoursesController.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\UserCoursesController.cs",
+              "ViewState": "AQIAAA8BAAAAAAAAAAAmwAgBAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T13:16:50.94Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LecturerTestsContoller.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\LecturerTestsContoller.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\LecturerTestsContoller.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\LecturerTestsContoller.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\LecturerTestsContoller.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAmwEkAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T20:50:15.336Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LecturerCoursesController.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\LecturerCoursesController.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\LecturerCoursesController.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\LecturerCoursesController.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\LecturerCoursesController.cs",
+              "ViewState": "AQIAAI8AAAAAAAAAAAAiwKEAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T13:15:55.665Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAiwEoAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T21:28:32.011Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "JwtService.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Services\\JwtService.cs",
+              "RelativeDocumentMoniker": "web-bek\\Services\\JwtService.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Services\\JwtService.cs",
+              "RelativeToolTip": "web-bek\\Services\\JwtService.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAAAC8AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T08:07:00.213Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AdminCoursesController.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\AdminCoursesController.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\AdminCoursesController.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\AdminCoursesController.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\AdminCoursesController.cs",
+              "ViewState": "AQIAAPEAAAAAAAAAAAAqwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-17T08:00:06.317Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AdminEnrollmentsController.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\AdminEnrollmentsController.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\AdminEnrollmentsController.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\AdminEnrollmentsController.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\AdminEnrollmentsController.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-17T07:59:55.474Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\UserController.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\UserController.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAgwBIAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T20:33:46.493Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Services\\EmailService.cs",
+              "RelativeDocumentMoniker": "web-bek\\Services\\EmailService.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Services\\EmailService.cs",
+              "RelativeToolTip": "web-bek\\Services\\EmailService.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAuwBAAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T08:33:28.275Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "RegisterDto.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Dto\\RegisterDto.cs",
+              "RelativeDocumentMoniker": "web-bek\\Dto\\RegisterDto.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Dto\\RegisterDto.cs",
+              "RelativeToolTip": "web-bek\\Dto\\RegisterDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T21:28:00.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Models\\User.cs",
+              "RelativeDocumentMoniker": "web-bek\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Models\\User.cs",
+              "RelativeToolTip": "web-bek\\Models\\User.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAAABwAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T21:26:58.148Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "LecturerDashboardContoller.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\LecturerDashboardContoller.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\LecturerDashboardContoller.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\LecturerDashboardContoller.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\LecturerDashboardContoller.cs",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAAAGEAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T08:09:03.545Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "web-bek\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\Jelena\\Desktop\\diplomskiProjekat\\web-bek\\web-bek\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "web-bek\\Controllers\\AdminController.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABIAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T07:26:04.428Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

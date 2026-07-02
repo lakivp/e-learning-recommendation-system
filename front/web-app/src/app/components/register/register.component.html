@@ -1,0 +1,86 @@
+<div class="auth-page">
+
+  <!-- LEFT: FORM -->
+  <div class="auth-left">
+
+    <div class="auth-card">
+      <h2>Create account</h2>
+      <p class="subtitle">Create your learning platform account</p>
+
+      <input
+        type="text"
+        placeholder="Name"
+        [(ngModel)]="name"
+      >
+
+      <input
+        type="text"
+        placeholder="Surname"
+        [(ngModel)]="surname"
+      >
+
+      <input
+        type="text"
+        placeholder="Username"
+        [(ngModel)]="username"
+      >
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        [(ngModel)]="email"
+        required
+        pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
+        #emailInput="ngModel"
+      />
+
+      <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched )" class="error">
+        Enter a valid email address
+      </div>
+
+      <input
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+      >
+
+      <div class="lecturer-option">
+        <label class="lecturer-row">
+          <input
+            type="checkbox"
+            [(ngModel)]="wantsToBeLecturer"
+          />
+          <div class="lecturer-text">
+            <span class="title">Apply as lecturer</span>
+            <span class="description">
+              Your request will be reviewed by an administrator.
+            </span>
+          </div>
+        </label>
+      </div>
+
+      <button class="login-button" (click)="register()">
+        Register
+      </button>
+
+      <p class="register-link">
+        Already have an account?
+        <button type="button" class="register-button" (click)="goToLogin()">
+          Login
+        </button>
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- RIGHT: IMAGE -->
+  <div class="auth-right"></div>
+
+</div>
+
+<!-- LOADER -->
+<div class="loader-overlay" *ngIf="loading">
+  <div class="spinner"></div>
+</div>

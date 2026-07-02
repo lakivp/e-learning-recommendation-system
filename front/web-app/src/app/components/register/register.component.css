@@ -1,0 +1,240 @@
+/* PAGE LAYOUT */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  background: #f7f7f7;
+}
+
+/* LEFT SIDE */
+.auth-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* CARD */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.auth-card h2 {
+  margin-bottom: 6px;
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.subtitle {
+  color: #777;
+  margin-bottom: 22px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* INPUTS */
+.auth-card input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: #3b7d3a;
+}
+
+/* BUTTON */
+.login-button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px;
+  background: #3b7d3a;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background: #2f6630;
+}
+
+/* LINKS */
+.register-link {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+
+.register-button {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
+}
+
+/* ERROR */
+.error {
+  font-size: 12px;
+  color: red;
+  margin-top: 6px;
+}
+
+/* RIGHT IMAGE */
+.auth-right {
+  flex: 1;
+  background-image: url('../../../../public/login1.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+/* LOADER */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 31, 28, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.spinner {
+  width: 70px;
+  height: 70px;
+  border: 6px solid rgba(255,255,255,0.2);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Lecturer request option */
+.lecturer-option {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: background 0.3s ease;
+}
+
+.lecturer-option:hover {
+  background: #f9fafb;
+}
+
+.lecturer-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.lecturer-row input[type="checkbox"] {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.lecturer-row input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  top: 1px;
+  left: 1px;
+  transition: transform 0.3s ease;
+}
+
+.lecturer-row input[type="checkbox"]:checked {
+  background: #3b7d3a;
+}
+
+.lecturer-row input[type="checkbox"]:checked::before {
+  transform: translateX(20px);
+}
+
+.lecturer-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.lecturer-text .title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+}
+
+.lecturer-text .description {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* MOBILE — ISTO KAO LOGIN */
+@media (max-width: 1000px) {
+
+  .auth-page {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .auth-right {
+    position: absolute;
+    inset: 0;
+    background-image: url('../../../../public/login1.webp');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  .auth-right::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .auth-left {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .auth-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+}

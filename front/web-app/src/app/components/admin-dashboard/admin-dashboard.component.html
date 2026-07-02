@@ -1,0 +1,122 @@
+<div class="dashboard">
+
+    <h2>Admin Dashboard</h2>
+
+    <div class="stats">
+
+        <div class="card">
+            <h3>Total Users</h3>
+            <p>{{dashboard?.totalUsers}}</p>
+        </div>
+
+        <div class="card">
+            <h3>Active Users</h3>
+            <p>{{dashboard?.activeUsers}}</p>
+        </div>
+
+        <div class="card">
+            <h3>Disabled Users</h3>
+            <p>{{dashboard?.disabledUsers}}</p>
+        </div>
+
+        <div class="card">
+            <h3>New Users Today</h3>
+            <p>{{dashboard?.newUsersToday}}</p>
+        </div>
+
+    </div>
+
+    <div class="top-cards-container">
+        <!-- Levo: Top 5 Users -->
+        <div class="top-users-card">
+            <h3>Top Users by Enrolled Courses</h3>
+            <div class="top-user" *ngFor="let user of topUsers">
+            <span class="username">{{user.username}}</span>
+            <div class="progress-bar">
+                <div class="progress" [style.width.%]="(user.courses / maxCourses) * 100"></div>
+            </div>
+            <span class="count">{{user.courses}}</span>
+            </div>
+        </div>
+
+        <!-- sredina: Top 5 Courses -->
+        <div class="top-courses-card">
+            <h3>The most popular courses by enrolled</h3>
+            <div class="top-course" *ngFor="let course of topCourses">
+            <span class="coursename">{{course.title}}</span>
+            <div class="progress-bar">
+                <div class="progress" [style.width.%]="(course.students / maxStudents) * 100"></div>
+            </div>
+            <span class="count">{{course.students}}</span>
+            </div>
+        </div>
+
+        <!-- desno: Top 5 Completed Users -->
+        <div class="top-courses-card">
+            <h3>Top Users by Completed Courses</h3>
+            <div class="top-course" *ngFor="let user of topCompletedUsers">
+            <span class="coursename">{{user.username}}</span>
+            <div class="progress-bar">
+                <div class="progress" [style.width.%]="(user.completed / maxCompleted) * 100"></div>
+            </div>
+            <span class="count">{{user.completed}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="chart-box">
+        <canvas id="usersChart"></canvas>
+    </div>
+
+    <h3>Recent Users</h3>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Date of registration</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let user of paginatedUsers">
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+                <td>
+                <span [class.active]="user.isActive" [class.disabled]="!user.isActive">
+                {{user.isActive ? 'Active' : 'Disabled'}}
+                </span>
+                </td>
+                <td>{{user.createdAt | date}}</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+   <div class="pagination" *ngIf="dashboard?.recentUsers.length > 0">
+
+        <button (click)="goToFirst()" [disabled]="page === 1">⏮</button>
+
+        <button (click)="prevPage()" [disabled]="page === 1">◀</button>
+
+        <button
+            *ngFor="let p of visiblePages"
+            (click)="setPage(p)"
+            [class.active]="p === page">
+            {{ p }}
+        </button>
+
+        <button (click)="nextPage()" [disabled]="page === totalPages">▶</button>
+
+        <button (click)="goToLast()" [disabled]="page === totalPages">⏭</button>
+
+    </div>
+
+</div>

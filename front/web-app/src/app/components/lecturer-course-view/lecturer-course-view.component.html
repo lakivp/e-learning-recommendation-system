@@ -1,0 +1,376 @@
+<div class="wrapper">
+
+  <h2>Lessons</h2>
+
+  <div class="lessons-header">
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      (input)="filterLessons()"
+      placeholder="Search lessons..."
+      class="search-input"
+    />
+    
+    <button class="add-btn" (click)="openAddModal()">
+      + Add Lesson
+    </button>
+  </div>
+
+  <div *ngIf="lessons.length === 0" class="no-data">
+    No lessons found
+  </div>
+
+  <div class="lessons-grid">
+
+    <div class="lesson-card" *ngFor="let lesson of pagedLessons; let i = index">
+
+      <div class="lesson-number">
+        Lesson {{ (currentPage-1)*pageSize + i + 1 }}
+      </div>
+
+      <h3>{{lesson.name}}</h3>
+
+      <div class="lesson-text-wrapper">
+        <p class="lesson-desc">{{lesson.text}}</p>
+        <span class="more-dots" (click)="openTextModal(lesson)">...</span>
+      </div>
+
+      <div class="file-preview" *ngIf="lesson.filePath">
+        <i class="fas" [ngClass]="getFileIcon(lesson.filePath)"></i>
+        <button class="link-button" (click)="downloadLessonFile(getFileName(lesson.filePath))">Download file</button>
+      </div>
+
+      <div class="actions">
+        <i class="fas fa-pen edit-icon" (click)="openEditModal(lesson)"></i>
+        <button class="delete-btn" (click)="deleteLesson(lesson.id)">Delete</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="pagination" *ngIf="lessons.length > 0">
+    <button (click)="goFirst()" [disabled]="currentPage === 1">⏮</button>
+    <button (click)="goPrev()" [disabled]="currentPage === 1">◀</button>
+
+    <button *ngFor="let p of visiblePages"
+            (click)="changePage(p)"
+            [class.active]="p === currentPage">
+      {{ p }}
+    </button>
+
+    <button (click)="goNext()" [disabled]="currentPage === totalLessonPages()">▶</button>
+    <button (click)="goLast()" [disabled]="currentPage === totalLessonPages()">⏭</button>
+  </div>
+
+  <hr />
+  <h2>Course Test</h2>
+
+  <div class="lessons-grid">
+
+    <div *ngIf="!test" class="lesson-card">
+      <p>No test created</p>
+      <button class="add-btn" (click)="openCreateTestModal()">
+        + Add Test
+      </button>
+    </div>
+
+    <div *ngIf="test" class="lesson-card test-card-ui">
+
+      <div class="lesson-number">
+        Course Test
+      </div>
+
+      <h3>{{ test.title }}</h3>
+
+      <div class="actions">
+        <button class="link-button" (click)="openPreviewTestModal()">
+          View test
+        </button>
+
+        <!-- <i class="fas fa-pen edit-icon" (click)="openEditTestModal()"></i> -->
+
+        <button class="delete-btn" (click)="deleteTest()">
+          Delete
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <h2 class="comments-title">Comments</h2>
+    <div class="comment" *ngFor="let c of pagedComments">
+        <div class="comment-left">
+            <p class="comment-user">{{c.userName}}</p>
+            <p class="comment-text">{{c.text}}</p>
+            <p class="comment-date">{{c.createdAt | date:'short'}}</p>
+        </div>
+        <div class="comment-right">
+            <button class="delete-comment" (click)="deleteComment(c.id)">Delete</button>
+        </div>
+    </div>
+
+    <div class="pagination" *ngIf="comments.length>0">
+      <button (click)="goCommentsFirst()" [disabled]="commentsCurrentPage === 1">⏮</button>
+      <button (click)="goCommentsPrev()" [disabled]="commentsCurrentPage === 1">◀</button>
+
+      <button *ngFor="let p of visiblePagesComm"
+              (click)="changeCommentsPage(p)"
+              [class.active]="p === commentsCurrentPage">
+        {{ p }}
+      </button>
+
+      <button (click)="goCommentsNext()" [disabled]="commentsCurrentPage === totalCommentPages()">▶</button>
+      <button (click)="goCommentsLast()" [disabled]="commentsCurrentPage === totalCommentPages()">⏭</button>
+    </div>
+
+  <div class="modal-overlay" *ngIf="addingLesson">
+    <div class="modal">
+      <h3>Add Lesson</h3>
+      <input class="input-title" type="text" [(ngModel)]="newLesson.name" placeholder="Lesson title"/>
+      <textarea [(ngModel)]="newLesson.text" placeholder="Lesson description"></textarea>
+
+      <div class="drop-zone" [ngClass]="{active:dragActive}" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave()">
+        <p *ngIf="!selectedFile">Drag file here or click to upload</p>
+        <p *ngIf="selectedFile">{{selectedFile.name}}</p>
+        <input type="file" (change)="onFileSelected($event)"/>
+      </div>
+
+      <div class="modal-actions">
+        <button (click)="saveLesson()">Add</button>
+        <button class="cancel" (click)="closeAddModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+    <div class="modal-overlay" *ngIf="editingLesson">
+        <div class="modal">
+            <h3>Edit Lesson</h3>
+
+            <input type="text" [(ngModel)]="editingLesson.name" placeholder="Lesson title"/>
+            <textarea [(ngModel)]="editingLesson.text" placeholder="Lesson description"></textarea>
+
+            <div *ngIf="editingLesson?.filePath" class="file-preview">
+                <i class="fas" [ngClass]="getFileIcon(editingLesson.filePath)"></i>
+                <a [href]="editingLesson.filePath" target="_blank" download>Download current file</a>
+                <button class="delete-file-btn" (click)="deleteLessonFile()">X</button>
+            </div>
+
+            <div class="drop-zone" 
+                [ngClass]="{active: editingDragActive, disabled: editingLesson.filePath}" 
+                (drop)="!editingLesson.filePath ? onEditDrop($event) : null"
+                (dragover)="!editingLesson.filePath ? onEditDragOver($event) : null"
+                (dragleave)="!editingLesson.filePath ? onEditDragLeave() : null">
+
+                <p *ngIf="!editingSelectedFile && !editingLesson.filePath">
+                    Drag file here or click to upload
+                </p>
+
+                <p *ngIf="editingSelectedFile">{{editingSelectedFile.name}}</p>
+
+                <p *ngIf="!editingSelectedFile && editingLesson.filePath">
+                    Current file: {{ getFileName(editingLesson.filePath) }}
+                </p>
+
+                <input type="file" 
+                    (change)="!editingLesson.filePath ? onEditFileSelected($event) : null"
+                    [disabled]="editingLesson.filePath"/>
+            </div>
+
+            <div class="modal-actions">
+                <button (click)="saveEdit()">Save</button>
+                <button class="cancel" (click)="cancelEditModal()">Cancel</button>
+
+            </div>
+        </div>
+    </div>
+
+  <div class="loader-overlay" *ngIf="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="showPreviewTestModal">
+    <div class="modal large">
+
+      <h3>{{ test?.title }}</h3>
+
+      <div class="modal-content">
+
+        <div class="question" *ngFor="let q of test?.questions; let i = index">
+          <p><strong>{{ i + 1 }}. {{ q.text }}</strong></p>
+
+          <ul>
+            <li *ngFor="let o of q.options; let oi = index"
+                [class.correct]="oi === q.correctIndex">
+              {{ o }}
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="modal-actions">
+        <button class="cancel" (click)="closePreviewTestModal()">Close</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<div class="modal-overlay" *ngIf="showCreateTestModal">
+  <div class="modal modal-xl">
+
+    <!-- HEADER -->
+    <div class="modal-header">
+      <h3>{{ isEditingTest ? 'Edit Test' : 'Create Test' }}</h3>
+    </div>
+
+    <!-- BODY -->
+    <div class="modal-body">
+
+      <div class="test-layout">
+
+        <!-- LEFT SIDE -->
+        <div class="test-left">
+
+          <!-- TEST TITLE -->
+          <input
+            class="input-title"
+            type="text"
+            [(ngModel)]="newTest.title"
+            placeholder="Test title"
+          />
+
+          <input
+            class="input-title"
+            type="number"
+            [min]="1"
+            [max]="newTest.questions.length"
+            [(ngModel)]="newTest.requiredCorrect"
+            placeholder="Number of correct answers to pass"
+          />
+
+          <input
+            class="input-title"
+            type="number"
+            min="1"
+            [(ngModel)]="newTest.durationMinutes"
+            placeholder="Test duration (minutes)"
+          />
+
+          <!-- QUESTION FORM -->
+          <div class="question-form">
+
+            <textarea
+              class="question-textarea"
+              [(ngModel)]="newQuestion.text"
+              placeholder="Question text">
+            </textarea>
+
+            <div class="options-wrapper options-scroll">
+              <div class="option-row" *ngFor="let opt of newQuestion.options; let i = index; trackBy: trackByIndex">
+                <textarea
+                  class="option-input"
+                  [ngModel]="newQuestion.options[i]"
+                  (ngModelChange)="newQuestion.options[i] = $event"
+                  placeholder="Answer text">
+                </textarea>
+                
+                <!-- RIGHT: CORRECT -->
+                <div class="option-right">
+                  <label class="is-correct">
+                    <input
+                      type="radio"
+                      
+                      [(ngModel)]="newQuestion.correctIndex"
+                      [ngModelOptions]="{standalone: true}"
+                      [value]="i"
+                    />
+                    Is correct
+                  </label>
+
+                  <button
+                    type="button"
+                    class="remove-option"
+                    *ngIf="newQuestion.options.length > 2"
+                    (click)="removeOption(i)">
+                    ✖
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- STICKY BUTTONS -->
+            <div class="question-actions sticky-actions">
+              <button type="button" class="btn-outline" (click)="addOption()">
+                + Add answer
+              </button>
+
+              <button type="button" class="btn-primary" (click)="addQuestionToNewTest()">
+                + Add question
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="test-right">
+
+          <h4>Questions</h4>
+
+          <div class="questions-scroll">
+
+            <div class="question-preview"
+                *ngFor="let q of newTest.questions; let qi = index">
+
+              <strong>{{ qi + 1 }}. {{ q.text }}</strong>
+
+              <ul>
+                <li *ngFor="let o of q.options; let oi = index"
+                    [class.correct]="oi === q.correctIndex">
+                  {{ o }}
+                </li>
+              </ul>
+
+              <!-- <button
+                type="button"
+                class="delete-btn"
+                (click)="removeQuestion(qi)">
+                Remove
+              </button> -->
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- FOOTER -->
+    <div class="modal-footer">
+      <button type="button" class="btn-primary" (click)="saveTest()">
+        {{ isEditingTest ? 'Save changes' : 'Create test' }}
+      </button>
+      <button type="button" class="btn-cancel" (click)="closeCreateTestModal()">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+  <div class="modal-overlay" *ngIf="textModalOpen">
+    <div class="modalFullDesc">
+      <h3>{{textModalLesson?.name}}</h3>
+      <div class="modal-body">
+        <p>{{textModalLesson?.text}}</p>
+      </div>
+      <div class="modal-actions">
+        <button class="cancel" (click)="closeTextModal()">Close</button>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,89 @@
+<div class="wrapper">
+
+  <h2 class="page-title">Browse Courses</h2>
+
+  <!-- SEARCH -->
+  <input 
+    class="search-input"
+    type="text"
+    [(ngModel)]="searchText"
+    (input)="filter()"
+    placeholder="Search courses..." />
+
+  <div *ngIf="courses.length === 0" class="no-data">
+      No courses found
+  </div>
+  <!-- GRID -->
+  <div class="grid">
+
+    <div class="course-card" *ngFor="let c of pagedCourses">
+
+      <!-- ENROLL -->
+      <div class="enroll-btn">
+        <button *ngIf="!c.isEnrolled"
+                (click)="enroll(c)">
+          Enroll
+        </button>
+
+        <span *ngIf="c.isEnrolled" class="enrolled">
+          ✔ Enrolled
+        </span>
+      </div>
+
+      <!-- TITLE -->
+      <h3>{{ c.title }}</h3>
+
+      <!-- DESCRIPTION WITH ... -->
+      <div class="course-desc-wrapper">
+        <p class="course-desc" (click)="openDescModal(c)">
+          {{ c.description }}
+        </p>
+        <i class="fas fa-ellipsis-h desc-icon" (click)="openDescModal(c)"></i>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="pagination" *ngIf="courses.length > 0">
+
+    <button (click)="goFirst()" [disabled]="page === 1">
+      ⏮
+    </button>
+
+    <button (click)="goPrev()" [disabled]="page === 1">
+      ◀
+    </button>
+
+    <button
+      *ngFor="let p of visiblePages"
+      (click)="goToPage(p)"
+      [class.active]="p === page">
+      {{ p }}
+    </button>
+
+    <button (click)="goNext()" [disabled]="page === totalPages">
+      ▶
+    </button>
+
+    <button (click)="goLast()" [disabled]="page === totalPages">
+      ⏭
+    </button>
+
+  </div>
+
+</div>
+
+<!-- FULL DESCRIPTION MODAL -->
+<div class="modal-overlay" *ngIf="descModalOpen">
+  <div class="modalFullDesc">
+    <h3>{{ selectedCourse?.title }}</h3>
+
+    <p>{{ selectedCourse?.description }}</p>
+
+    <div class="modal-actions">
+      <button (click)="closeDescModal()">Close</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="requests-container">
+
+  <h2>Lecturer Requests</h2>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <input
+      type="text"
+      placeholder="Search by username or email..."
+      [(ngModel)]="searchTerm"
+      (input)="applyFilters()"
+    />
+  </div>
+
+  <table *ngIf="filteredRequests.length">
+
+    <thead>
+      <tr>
+        <th (click)="sort('username')">
+          Username
+          <i class="fa fa-sort" aria-hidden="true"></i>
+        </th>
+        <th (click)="sort('email')">
+          Email
+          <i class="fa fa-sort" aria-hidden="true"></i>
+        </th>
+        <th (click)="sort('createdAt')">
+          Created
+          <i class="fa fa-sort" aria-hidden="true"></i>
+        </th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let u of paginatedRequests">
+        <td>{{ u.username }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.createdAt | date:'short' }}</td>
+        <td>
+          <div class="action-buttons">
+            <button class="btn approve" (click)="approve(u.id)">
+              <i class="fas fa-check"></i>
+              Approve
+            </button>
+
+            <button class="btn reject" (click)="reject(u.id)">
+              <i class="fas fa-times"></i>
+              Reject
+            </button>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <p *ngIf="filteredRequests.length === 0" class="no-data">
+    No pending requests
+  </p>
+
+  <!-- PAGINATION -->
+  <div class="pagination" *ngIf="filteredRequests.length > 0">
+    <button (click)="goToFirst()" [disabled]="page === 1">⏮</button>
+    <button (click)="prevPage()" [disabled]="page === 1">◀</button>
+
+    <button
+      *ngFor="let p of visiblePages"
+      (click)="setPage(p)"
+      [class.active]="p === page">
+      {{ p }}
+    </button>
+
+    <button (click)="nextPage()" [disabled]="page === totalPages">▶</button>
+    <button (click)="goToLast()" [disabled]="page === totalPages">⏭</button>
+  </div>
+
+</div>
