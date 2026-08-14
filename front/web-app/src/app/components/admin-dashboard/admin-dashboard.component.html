@@ -65,7 +65,7 @@
     </div>
 
     <div class="chart-box">
-        <canvas id="usersChart"></canvas>
+        <canvas #usersChart></canvas>
     </div>
 
     <h3>Recent Users</h3>
@@ -84,7 +84,7 @@
 
         <tbody>
 
-            <tr *ngFor="let user of paginatedUsers">
+            <tr *ngFor="let user of paginatedUsers; trackBy: trackByUser">
                 <td>{{user.username}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.role}}</td>
@@ -100,7 +100,7 @@
 
     </table>
 
-   <div class="pagination" *ngIf="dashboard?.recentUsers.length > 0">
+    <div class="pagination" *ngIf="(dashboard?.recentUsers?.length || 0) > 0">
 
         <button (click)="goToFirst()" [disabled]="page === 1">⏮</button>
 

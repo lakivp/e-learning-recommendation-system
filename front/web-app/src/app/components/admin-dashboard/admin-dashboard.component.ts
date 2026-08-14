@@ -1,8 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { Chart } from 'chart.js/auto';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+interface RegistrationStat { date: string; count: number; }
+interface TopUser { username: string; courses: number; }
+interface TopCourse { title: string; students: number; }
+interface TopCompletedUser { username: string; completed: number; }
+interface RecentUser { id?: number | string; username: string; email: string; role?: string; isActive?: boolean; createdAt?: string; }
+interface Dashboard { totalUsers?: number; activeUsers?: number; disabledUsers?: number; newUsersToday?: number; recentUsers?: RecentUser[]; topUsers?: TopUser[]; topCourses?: TopCourse[]; topCompletedUsers?: TopCompletedUser[]; registrationStats?: RegistrationStat[]; }
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -11,34 +20,39 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']
 })
-export class AdminDashboardComponent implements OnInit {
 
-  dashboard: any;
+export class AdminDashboardComponent implements OnInit, OnDestroy {
+
+  dashboard: Dashboard | null = null;
 
   page = 1;
-  pageSize = 8;
+  readonly pageSize = 8;
   totalPages = 0;
 
-  topUsers: { username: string, courses: number }[] = [];
-  maxCourses: number = 0;
+  topUsers: TopUser[] = [];
+  maxCourses = 0;
 
-  topCourses: { title: string, students: number }[] = [];
-  maxStudents: number = 0;
+  topCourses: TopCourse[] = [];
+  maxStudents = 0;
 
-  topCompletedUsers: { username: string, completed: number }[] = [];
-  maxCompleted: number = 0;
+  topCompletedUsers: TopCompletedUser[] = [];
+  maxCompleted = 0;
+
+  private destroy$ = new Subject<void>();
+  private usersChart?: Chart;
+
+  @ViewChild('usersChart') usersChartRef?: ElementRef<HTMLCanvasElement>;
 
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
-
-    this.adminService.getDashboard().subscribe(res => {
+    this.adminService.getDashboard().pipe(takeUntil(this.destroy$)).subscribe(res => {
       this.dashboard = res;
-      this.totalPages = Math.ceil((this.dashboard.recentUsers?.length || 0) / this.pageSize);
+      this.totalPages = Math.ceil((this.dashboard?.recentUsers?.length || 0) / this.pageSize);
 
-      this.topUsers = this.dashboard.topUsers ?? [];
-      this.topCourses = this.dashboard.topCourses ?? [];
-      this.topCompletedUsers = this.dashboard.topCompletedUsers ?? [];
+      this.topUsers = this.dashboard?.topUsers ?? [];
+      this.topCourses = this.dashboard?.topCourses ?? [];
+      this.topCompletedUsers = this.dashboard?.topCompletedUsers ?? [];
 
       this.maxCourses = this.topUsers.length > 0 ? Math.max(...this.topUsers.map(u => u.courses)) : 0;
       this.maxStudents = this.topCourses.length > 0 ? Math.max(...this.topCourses.map(u => u.students)) : 0;
@@ -48,15 +62,23 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  createChart() {
-    if (!this.dashboard?.registrationStats) return;
+  createChart(): void {
+    if (!this.dashboard?.registrationStats || !this.usersChartRef) return;
 
-    const labels = this.dashboard.registrationStats.map((x: any) => x.date);
-    const data = this.dashboard.registrationStats.map((x: any) => x.count);
+    const labels = this.dashboard.registrationStats.map((x: RegistrationStat) => x.date);
+    const data = this.dashboard.registrationStats.map((x: RegistrationStat) => x.count);
 
     const maxValue = Math.max(...data, 0);
 
-    new Chart("usersChart", {
+    if (this.usersChart) {
+      this.usersChart.destroy();
+      this.usersChart = undefined;
+    }
+
+    const ctx = this.usersChartRef.nativeElement.getContext('2d');
+    if (!ctx) return;
+
+    this.usersChart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: labels,
@@ -85,45 +107,56 @@ export class AdminDashboardComponent implements OnInit {
   // Paginacija recent users
   get visiblePages(): number[] {
     const maxVisible = 4;
-    let start = Math.max(1, this.page - 1);
-    let end = start + maxVisible - 1;
+    if (this.totalPages <= 0) return [];
 
-    if (end > this.totalPages) {
-      end = this.totalPages;
-      start = Math.max(1, end - maxVisible + 1);
-    }
+    const half = Math.floor(maxVisible / 2);
+    let start = Math.max(1, Math.min(this.page - half, Math.max(1, this.totalPages - maxVisible + 1)));
+    let end = Math.min(this.totalPages, start + maxVisible - 1);
 
     return Array.from({ length: end - start + 1 }, (_, i) => start + i);
   }
 
-  nextPage() {
+  nextPage(): void {
     if (this.page < this.totalPages) {
       this.page++;
     }
   }
 
-  prevPage() {
+  prevPage(): void {
     if (this.page > 1) {
       this.page--;
     }
   }
 
-  goToFirst() {
+  goToFirst(): void {
     this.page = 1;
   }
 
-  goToLast() {
+  goToLast(): void {
     this.page = this.totalPages;
   }
 
-  setPage(p: number) {
+  setPage(p: number): void {
     this.page = p;
   }
 
-  get paginatedUsers() {
+  get paginatedUsers(): RecentUser[] {
     if (!this.dashboard?.recentUsers) return [];
 
     const start = (this.page - 1) * this.pageSize;
     return this.dashboard.recentUsers.slice(start, start + this.pageSize);
+  }
+
+  trackByUser(_index: number, user: RecentUser): number | string {
+    return user?.id ?? _index;
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    if (this.usersChart) {
+      this.usersChart.destroy();
+      this.usersChart = undefined;
+    }
   }
 }
