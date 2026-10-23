@@ -1,4 +1,4 @@
-## 🎓 Opis projekta
+## Opis projekta
 
 Cilj aplikacije je da omogući:
 - upravljanje obrazovnim sadržajem (kursevi, lekcije, testovi),
@@ -14,7 +14,7 @@ Poseban akcenat stavljen je na sistem za preporuku kurseva, koji koristi *conten
 
 ---
 
-## 🧠 Sistem za preporuku kurseva
+## Sistem za preporuku kurseva
 
 Preporučivanje kurseva zasnovano je na **content-based filtering** pristupu.
 
@@ -25,7 +25,7 @@ Preporučivanje kurseva zasnovano je na **content-based filtering** pristupu.
 
 ---
 
-## 🛠️ Tehnologije
+## Tehnologije
 
 ### Frontend
 - Angular
@@ -43,7 +43,7 @@ Preporučivanje kurseva zasnovano je na **content-based filtering** pristupu.
 
 ---
 
-## 🏗️ Arhitektura sistema
+## Arhitektura sistema
 
 Aplikacija je zasnovana na **klijent-server arhitekturi** i sastoji se od:
 - frontend klijentske aplikacije,
@@ -52,7 +52,7 @@ Aplikacija je zasnovana na **klijent-server arhitekturi** i sastoji se od:
 
 ---
 
-## 📊 Praćenje aktivnosti i statistika
+## Praćenje aktivnosti i statistika
 
 Sistem evidentira:
 - upis korisnika na kurseve,
@@ -67,7 +67,7 @@ Na osnovu ovih podataka omogućeni su:
 
 ---
 
-## 📁 Pokretanje projekta
+## Pokretanje projekta
 
 1. Pokrenuti backend (.NET Web API)
 2. Pokrenuti frontend (ng serve) 
